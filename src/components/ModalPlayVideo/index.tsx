@@ -1,31 +1,38 @@
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog"
 import { VideoPlayer } from "./components/VideoPlayer"
 import { getOptimizedVideoUrl } from "@/lib/cloudinary-url"
-import { VideoType } from "@/data/get-videos.queries"
+import { PrescriptionType } from "../VideoGrid"
 
 type ModalPlayVideoProps = {
-  video: VideoType | null
+  prescription: PrescriptionType
   isOpen: boolean
   onClose: () => void
 }
 
-const ModalPlayVideo = ({ video, isOpen, onClose }: ModalPlayVideoProps) => {
-  if (!video) return null
+const ModalPlayVideo = ({
+  prescription,
+  isOpen,
+  onClose,
+}: ModalPlayVideoProps) => {
+  if (!prescription.video) return null
 
-  const videoSrc = getOptimizedVideoUrl(video.cloudinaryPublicId, video.url)
+  const videoSrc = getOptimizedVideoUrl(
+    prescription.video.cloudinaryPublicId,
+    prescription.video.url,
+  )
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="flex max-h-[90vh] w-100 max-w-[95%] flex-col gap-3 overflow-y-auto rounded-md p-0 shadow-md sm:max-w-sm md:p-4">
-        <DialogTitle className="sr-only">{video.name}</DialogTitle>
+        <DialogTitle className="sr-only">{prescription.video.name}</DialogTitle>
 
         <VideoPlayer
           src={videoSrc}
-          poster={video.thumbnailUrl}
-          key={video.id}
-          videoDate={video.createdAt}
-          videoDescription={video.description}
-          videoTitle={video.name}
+          poster={prescription.video.thumbnailUrl}
+          key={prescription.video.id}
+          videoDate={prescription.video.createdAt}
+          videoDescription={prescription.video.description}
+          videoTitle={prescription.video.name}
         />
       </DialogContent>
     </Dialog>

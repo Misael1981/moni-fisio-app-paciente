@@ -41,9 +41,7 @@ const DrawerContentVideo = ({
         </div>
 
         <DrawerFooter>
-          <DrawerClose>
-            <Button variant="destructive">Fechar</Button>
-          </DrawerClose>
+          <DrawerClose render={<Button variant="destructive">Fechar</Button>} />
         </DrawerFooter>
       </DrawerContent>
     </Drawer>

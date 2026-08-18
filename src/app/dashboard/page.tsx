@@ -2,10 +2,18 @@ import { getServerSession } from "next-auth"
 import { authOptions } from "@/lib/auth"
 import HeaderDashboard from "./components/HeaderDashboard"
 import { getPatientWithEvolutions } from "@/data/get-patient-data-by-id.queries"
-import { Calendar, CirclePlay, ClipboardList, Clock } from "lucide-react"
+import {
+  Calendar,
+  CirclePlay,
+  ClipboardList,
+  Clock,
+  VideoIcon,
+} from "lucide-react"
 import { formatDate } from "@/helpers/format-date"
 import StatCard from "./components/StatCard"
 import { Button } from "@/components/ui/button"
+import EmptyData from "@/components/EmptyData"
+import VideoGrid from "@/components/VideoGrid"
 
 export default async function DashboardPage() {
   const session = await getServerSession(authOptions)
@@ -36,30 +44,46 @@ export default async function DashboardPage() {
           </p>
         </section>
 
-        <div className="space-y-4">
-          <section className="grid grid-cols-1 gap-3 sm:grid-cols-3">
-            <StatCard
-              icon={<Calendar className="text-blue-custom h-5 w-5" />}
-              title="Última sessão"
-              value={formatDate(patient?.evolution[0].createdAt) || "N/A"}
-            />
-            <StatCard
-              icon={<ClipboardList className="text-blue-custom h-5 w-5" />}
-              title="Exercícios"
-              value={patient?.evolution[0].prescriptions.length ?? 0}
-            />
-            <StatCard
-              icon={<Clock className="text-blue-custom h-5 w-5" />}
-              title="Tempo Total"
-              value="48 min"
-            />
+        <div className="flex flex-col gap-4 lg:flex-row lg:justify-center">
+          <section className="space-y-4">
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
+              <StatCard
+                icon={<Calendar className="text-blue-custom h-5 w-5" />}
+                title="Última sessão"
+                value={formatDate(patient?.evolution[0].createdAt) || "N/A"}
+              />
+              <StatCard
+                icon={<ClipboardList className="text-blue-custom h-5 w-5" />}
+                title="Exercícios"
+                value={patient?.evolution[0].prescriptions.length ?? 0}
+              />
+              <StatCard
+                icon={<Clock className="text-blue-custom h-5 w-5" />}
+                title="Tempo Total"
+                value="48 min"
+              />
+            </div>
+            <div className="flex justify-center">
+              <Button className="w-full max-w-md text-lg" size="lg">
+                <CirclePlay className="size-5" />
+                Iniciar Exercícios
+              </Button>
+            </div>
           </section>
-          <div className="flex justify-center">
-            <Button className="w-full max-w-md text-lg" size="lg">
-              <CirclePlay className="size-5" />
-              Iniciar Exercícios
-            </Button>
-          </div>
+
+          <section className="pb-6">
+            {patient?.evolution[0].prescriptions.length === 0 && (
+              <EmptyData
+                icon={VideoIcon}
+                title="Nenhum Vídeo Treino"
+                description="Você não teve nenhum vídeo treino postado nessa sessão."
+              />
+            )}
+
+            {patient?.evolution[0].prescriptions && (
+              <VideoGrid prescriptions={patient?.evolution[0].prescriptions} />
+            )}
+          </section>
         </div>
       </div>
     </div>
