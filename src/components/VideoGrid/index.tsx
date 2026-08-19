@@ -37,7 +37,7 @@ type VideoGridProps = {
 const VideoGrid = ({ prescriptions }: VideoGridProps) => {
   return (
     <section className="space-y-4">
-      <div className="flex w-full justify-between gap-4">
+      <div className="flex w-full items-center justify-between gap-4 lg:justify-center">
         <h2 className="font-heading text-lg font-semibold lg:text-xl">
           Lista de vídeos treinos
         </h2>

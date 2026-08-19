@@ -44,7 +44,7 @@ export default async function DashboardPage() {
           </p>
         </section>
 
-        <div className="flex flex-col gap-4 lg:flex-row lg:justify-center">
+        <div className="flex flex-col gap-4 lg:justify-center">
           <section className="space-y-4">
             <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
               <StatCard
