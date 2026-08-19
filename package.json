@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build --webpack",
     "start": "next start",
     "lint": "eslint",
     "postinstall": "prisma generate --schema=node_modules/@misael1981/physio-database/prisma/schema.prisma"
@@ -14,6 +14,7 @@
     "@hookform/resolvers": "^5.9.0",
     "@misael1981/physio-database": "^1.3.3",
     "@prisma/client": "^6.19.3",
+    "@serwist/next": "^9.5.12",
     "bcrypt": "^6.0.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
@@ -41,6 +42,7 @@
     "prettier": "^3.9.6",
     "prettier-plugin-tailwindcss": "^0.8.1",
     "prisma": "^6.19.3",
+    "serwist": "^9.5.12",
     "tailwindcss": "^4",
     "typescript": "^5"
   },

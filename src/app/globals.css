@@ -102,6 +102,16 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+
+  --base: #1e128a;
+  --base-deep: #120a55;
+  --base-soft: #3624b8;
+  --lilac: #b6a9ff;
+  --lilac-dim: #8b7ce8;
+  --card-bg: #ffffff;
+  --ink: #1a1533;
+  --muted: #6b6485;
+  --line: #e7e4f6;
 }
 
 @layer base {
@@ -114,4 +124,24 @@
   html {
     @apply font-sans;
   }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family:
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  background: var(--base-deep);
 }

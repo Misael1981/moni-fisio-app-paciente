@@ -47,9 +47,7 @@ export function VideoCard({ prescription }: VideoCardProps) {
 
       <div className="space-y-3 p-3">
         <div>
-          <h3 className="line-clamp-2 font-medium">
-            {prescription.video?.name}
-          </h3>
+          <h3 className="truncate font-medium">{prescription.video?.name}</h3>
 
           <div className="text-muted-foreground mt-1 flex items-center gap-2 text-xs">
             {prescription.video?.category && (

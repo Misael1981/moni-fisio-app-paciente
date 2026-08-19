@@ -32,7 +32,7 @@ export default async function DashboardPage() {
   return (
     <div className="bg-background min-h-screen">
       <HeaderDashboard patient={patient} />
-      <div className="flex w-full justify-center">
+      <div className="bg-background flex w-full justify-center">
         <div className="w-full max-w-6xl">
           <section className="text-blue-custom py-2 text-center font-semibold">
             <h1 className="font-fancy text-2xl">Letícia Moni Fisio</h1>
