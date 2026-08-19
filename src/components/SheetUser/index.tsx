@@ -14,8 +14,17 @@ import {
 } from "@/components/ui/sheet"
 import { BiMenuAltRight } from "react-icons/bi"
 import SignOutUser from "../SignOutUser"
+import { PatientWithEvolutionsType } from "@/data/get-patient-data-by-id.queries"
+import { todayFormatted } from "@/helpers/today-formatted"
 
-const SheetUser = () => {
+type SheetUserProps = {
+  patient: PatientWithEvolutionsType | null
+}
+
+const SheetUser = ({ patient }: SheetUserProps) => {
+  const displayName =
+    patient?.nickname || patient?.name?.split(" ")[0] || "Paciente"
+
   return (
     <Sheet>
       <SheetTrigger
@@ -27,21 +36,10 @@ const SheetUser = () => {
       />
       <SheetContent>
         <SheetHeader>
-          <SheetTitle>Edit profile</SheetTitle>
-          <SheetDescription>
-            Make changes to your profile here. Click save when you&apos;re done.
-          </SheetDescription>
+          <SheetTitle>Olá, {displayName}!</SheetTitle>
+          <SheetDescription>{todayFormatted}</SheetDescription>
         </SheetHeader>
-        <div className="grid flex-1 auto-rows-min gap-6 px-4">
-          <div className="grid gap-3">
-            <Label htmlFor="sheet-demo-name">Name</Label>
-            <Input id="sheet-demo-name" defaultValue="Pedro Duarte" />
-          </div>
-          <div className="grid gap-3">
-            <Label htmlFor="sheet-demo-username">Username</Label>
-            <Input id="sheet-demo-username" defaultValue="@peduarte" />
-          </div>
-        </div>
+        <div className="grid flex-1 auto-rows-min gap-6 px-4"></div>
         <SheetFooter>
           <SignOutUser />
         </SheetFooter>
