@@ -33,6 +33,7 @@ const ModalPlayVideo = ({
           videoDate={prescription.video.createdAt}
           videoDescription={prescription.video.description}
           videoTitle={prescription.video.name}
+          prescription={prescription}
         />
       </DialogContent>
     </Dialog>

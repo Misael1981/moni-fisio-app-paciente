@@ -1,7 +1,14 @@
 "use client"
 
 import Image from "next/image"
-import { Clock3, Play } from "lucide-react"
+import {
+  CalendarDays,
+  Clock3,
+  Dumbbell,
+  Play,
+  Repeat,
+  Timer,
+} from "lucide-react"
 import { useState } from "react"
 import ModalPlayVideo from "../ModalPlayVideo"
 import { PrescriptionType } from "../VideoGrid"
@@ -63,6 +70,36 @@ export function VideoCard({ prescription }: VideoCardProps) {
               </>
             )}
           </div>
+        </div>
+
+        <div className="grid grid-cols-2 gap-3 text-sm">
+          {prescription.sets != null && (
+            <div className="flex items-center gap-2">
+              <Repeat className="text-muted-foreground size-4" />
+              <span>{prescription.sets} séries</span>
+            </div>
+          )}
+
+          {prescription.reps != null && (
+            <div className="flex items-center gap-2">
+              <Dumbbell className="text-muted-foreground size-4" />
+              <span>{prescription.reps} reps</span>
+            </div>
+          )}
+
+          {prescription.holdTimeSec != null && (
+            <div className="flex items-center gap-2">
+              <Timer className="text-muted-foreground size-4" />
+              <span>{prescription.holdTimeSec}s</span>
+            </div>
+          )}
+
+          {prescription.frequency != null && (
+            <div className="flex items-center gap-2">
+              <CalendarDays className="text-muted-foreground size-4" />
+              <span>{prescription.frequency}</span>
+            </div>
+          )}
         </div>
       </div>
 

@@ -1,3 +1,4 @@
+import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import {
   Drawer,
@@ -8,6 +9,7 @@ import {
   DrawerHeader,
   DrawerTitle,
 } from "@/components/ui/drawer"
+import { PrescriptionType } from "@/components/VideoGrid"
 
 type DrawerContentVideoProps = {
   videoTitle: string
@@ -15,6 +17,7 @@ type DrawerContentVideoProps = {
   videoDate: Date
   isOpen: boolean
   onClose: () => void
+  prescription: PrescriptionType
 }
 
 const DrawerContentVideo = ({
@@ -23,6 +26,7 @@ const DrawerContentVideo = ({
   videoTitle,
   isOpen,
   onClose,
+  prescription,
 }: DrawerContentVideoProps) => {
   return (
     <Drawer open={isOpen} onOpenChange={onClose}>
@@ -34,7 +38,25 @@ const DrawerContentVideo = ({
           </DrawerDescription>
         </DrawerHeader>
 
-        <div className="flex-1 overflow-y-auto p-4">
+        <div className="flex-1 space-y-4 overflow-y-auto p-4">
+          <div className="flex w-full flex-wrap gap-2">
+            {prescription.sets != null && (
+              <Badge variant="secondary">{prescription.sets} séries</Badge>
+            )}
+
+            {prescription.reps != null && (
+              <Badge variant="secondary">{prescription.reps} reps</Badge>
+            )}
+
+            {prescription.holdTimeSec != null && (
+              <Badge variant="secondary">{prescription.holdTimeSec}s</Badge>
+            )}
+
+            {prescription.frequency && (
+              <Badge variant="outline">{prescription.frequency}</Badge>
+            )}
+          </div>
+
           {videoDescription && (
             <p className="text-sm whitespace-pre-line">{videoDescription}</p>
           )}

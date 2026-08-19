@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import DrawerContentVideo from "../DrawerContentVideo"
+import { PrescriptionType } from "@/components/VideoGrid"
 
 type VideoPlayerProps = {
   src: string
@@ -11,6 +12,7 @@ type VideoPlayerProps = {
   videoTitle: string
   videoDescription: string | null
   videoDate: Date
+  prescription: PrescriptionType
 }
 
 export function VideoPlayer({
@@ -19,6 +21,7 @@ export function VideoPlayer({
   videoDate,
   videoDescription,
   videoTitle,
+  prescription,
 }: VideoPlayerProps) {
   const videoRef = useRef<HTMLVideoElement>(null)
   const controlsTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
@@ -192,6 +195,7 @@ export function VideoPlayer({
         videoTitle={videoTitle}
         isOpen={isOpenDeawer}
         onClose={() => setOpenDrawer(false)}
+        prescription={prescription}
       />
     </div>
   )
