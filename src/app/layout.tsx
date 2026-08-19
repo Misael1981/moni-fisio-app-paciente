@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import { Geist, Geist_Mono, Inter, Alex_Brush } from "next/font/google"
 import "./globals.css"
 import { cn } from "@/lib/utils"
+import { Providers } from "./providers"
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" })
 
@@ -29,7 +30,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
-      lang="en"
+      lang="pt-BR"
       className={cn(
         "h-full",
         "antialiased",
@@ -40,7 +41,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         alexBrush.variable,
       )}
     >
-      <body className="flex min-h-full flex-col">{children}</body>
+      <body className="flex min-h-full flex-col">
+        {" "}
+        <Providers>{children}</Providers>
+      </body>
     </html>
   )
 }
