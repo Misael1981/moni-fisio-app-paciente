@@ -9,6 +9,7 @@ import {
   FieldLabel,
 } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
+import { maskCPF } from "@/helpers/mask-cpf"
 import {
   PatientLoginInput,
   patientLoginSchema,
@@ -68,9 +69,12 @@ const FormLogin = () => {
         <Field>
           <FieldLabel>CPF</FieldLabel>
           <Input
-            placeholder="XXX.XXX.XXX-XX"
+            placeholder="aaa.aaa.aaa-aa"
             inputMode="numeric"
             {...register("cpf")}
+            onChange={(e) => {
+              e.target.value = maskCPF(e.target.value)
+            }}
           />
           <FieldError>{errors.cpf?.message}</FieldError>
         </Field>
@@ -81,7 +85,7 @@ const FormLogin = () => {
           <Input
             inputMode="numeric"
             maxLength={6}
-            placeholder="••••••••"
+            placeholder="••••••"
             {...register("pin")}
           />
           <FieldError>{errors.pin?.message}</FieldError>

@@ -65,7 +65,7 @@ const ChangePinForm = () => {
           <Input
             inputMode="numeric"
             maxLength={6}
-            placeholder="••••••••"
+            placeholder="••••••"
             {...register("pin")}
           />
           <FieldError>{errors.pin?.message}</FieldError>
@@ -76,7 +76,7 @@ const ChangePinForm = () => {
           <Input
             inputMode="numeric"
             maxLength={6}
-            placeholder="••••••••"
+            placeholder="••••••"
             {...register("confirmPin")}
           />
           <FieldError>{errors.confirmPin?.message}</FieldError>

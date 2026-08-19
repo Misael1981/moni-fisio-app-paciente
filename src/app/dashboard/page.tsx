@@ -30,13 +30,13 @@ export default async function DashboardPage() {
   const prescriptions = lastEvolution?.prescriptions ?? []
 
   return (
-    <div>
+    <div className="bg-background min-h-screen">
       <HeaderDashboard />
       <section className="text-blue-custom py-2 text-center font-semibold">
         <h1 className="font-fancy text-2xl">Letícia Moni Fisio</h1>
         <p className="text-sm"> App do Paciente</p>
       </section>
-      <div className="space-y-4 px-4">
+      <div className="bg-background space-y-4 px-4">
         <section className="bg-card rounded-lg py-4 shadow-sm">
           <h2 className="text-blue-custom text-2xl font-bold tracking-tight">
             Olá, {displayName}!
@@ -75,7 +75,7 @@ export default async function DashboardPage() {
             </div>
           </section>
 
-          <section className="pb-6">
+          <section className="bg-background pb-6">
             {prescriptions.length === 0 ? (
               <EmptyData
                 icon={VideoIcon}
