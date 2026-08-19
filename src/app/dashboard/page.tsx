@@ -21,12 +21,13 @@ export default async function DashboardPage() {
   const session = await getServerSession(authOptions)
   if (!session) return null
 
-  const [patient] = await Promise.all([
-    getPatientWithEvolutions(session.user.id),
-  ])
+  const patient = await getPatientWithEvolutions(session.user.id)
 
   const displayName =
     patient?.nickname || patient?.name?.split(" ")[0] || "Paciente"
+
+  const lastEvolution = patient?.evolution?.[0]
+  const prescriptions = lastEvolution?.prescriptions ?? []
 
   return (
     <div>
@@ -40,7 +41,6 @@ export default async function DashboardPage() {
           <h2 className="text-blue-custom text-2xl font-bold tracking-tight">
             Olá, {displayName}!
           </h2>
-
           <p className="text-muted-foreground text-sm">
             Cuidar da sua saúde é um passo de cada vez.
           </p>
@@ -52,12 +52,14 @@ export default async function DashboardPage() {
               <StatCard
                 icon={<Calendar className="text-blue-custom h-5 w-5" />}
                 title="Última sessão"
-                value={formatDate(patient?.evolution[0].createdAt) || "N/A"}
+                value={
+                  lastEvolution ? formatDate(lastEvolution.createdAt) : "N/A"
+                }
               />
               <StatCard
                 icon={<ClipboardList className="text-blue-custom h-5 w-5" />}
                 title="Exercícios"
-                value={patient?.evolution[0].prescriptions.length ?? 0}
+                value={prescriptions.length}
               />
               <StatCard
                 icon={<Clock className="text-blue-custom h-5 w-5" />}
@@ -74,16 +76,14 @@ export default async function DashboardPage() {
           </section>
 
           <section className="pb-6">
-            {patient?.evolution[0].prescriptions.length === 0 && (
+            {prescriptions.length === 0 ? (
               <EmptyData
                 icon={VideoIcon}
                 title="Nenhum Vídeo Treino"
                 description="Você não teve nenhum vídeo treino postado nessa sessão."
               />
-            )}
-
-            {patient?.evolution[0].prescriptions && (
-              <VideoGrid prescriptions={patient?.evolution[0].prescriptions} />
+            ) : (
+              <VideoGrid prescriptions={prescriptions} />
             )}
           </section>
         </div>
