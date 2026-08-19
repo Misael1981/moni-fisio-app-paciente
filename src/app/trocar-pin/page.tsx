@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic"
+
 import CardLogin from "@/components/CardLogin"
 import ChangePinForm from "@/components/CardLogin/components/ChangePinForm"
 

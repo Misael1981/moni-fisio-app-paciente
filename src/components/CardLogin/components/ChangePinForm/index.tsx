@@ -16,12 +16,14 @@ import {
   type ChangePinValues,
 } from "@/schemas/change-pin.schema"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { useSession } from "next-auth/react"
 import { useRouter } from "next/navigation"
 import { useState, useTransition } from "react"
 import { useForm } from "react-hook-form"
 
 const ChangePinForm = () => {
   const router = useRouter()
+  const { update } = useSession()
   const [isPending, startTransition] = useTransition()
   const [serverError, setServerError] = useState<string | null>(null)
 
@@ -44,6 +46,8 @@ const ChangePinForm = () => {
         setServerError("Não foi possível salvar o novo PIN. Tente novamente.")
         return
       }
+
+      await update()
 
       router.push("/dashboard")
       router.refresh()
