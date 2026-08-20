@@ -55,7 +55,7 @@ export const viewport: Viewport = {
   colorScheme: "light",
   width: "device-width",
   initialScale: 1,
-  maximumScale: 1, // Evita zoom indesejado ao tocar em inputs no mobile
+  maximumScale: 1,
   userScalable: false,
 }
 
