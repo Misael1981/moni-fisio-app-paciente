@@ -79,6 +79,7 @@ export default async function DashboardPage() {
                   </Button>
                 </div>
               </section>
+
               <section className="bg-background pb-6">
                 {prescriptions.length === 0 ? (
                   <EmptyData
